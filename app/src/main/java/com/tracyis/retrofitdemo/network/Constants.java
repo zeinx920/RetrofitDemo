@@ -1,4 +1,4 @@
-package com.tracyis.retrofitdemo;
+package com.tracyis.retrofitdemo.network;
 
 /**
  * Created by Trasys on 2017/4/6.
