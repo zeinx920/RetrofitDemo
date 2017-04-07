@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tracyis.retrofitdemo.Api;
-import com.tracyis.retrofitdemo.Constants;
 import com.tracyis.retrofitdemo.persistentcookiejar.PersistentCookieJar;
 import com.tracyis.retrofitdemo.persistentcookiejar.cache.SetCookieCache;
 import com.tracyis.retrofitdemo.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
@@ -66,8 +64,8 @@ public class MyRetrofit {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .cache(new Cache(directory, DEFAULT_CACHE_SIZE))
                 .addInterceptor(new LoggingInterceptor())
-                .cookieJar(cookieJar)
                 .addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
+                .cookieJar(cookieJar)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -88,6 +86,7 @@ public class MyRetrofit {
             CacheControl.Builder builder = new CacheControl.Builder().maxAge(10, TimeUnit.MINUTES);
             return originalResponse.newBuilder()
                     .header(CACHE_CONTROL, builder.build().toString())
+//                    .addHeader("userid","20428")
                     .build();
         }
     };
